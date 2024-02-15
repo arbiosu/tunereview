@@ -1,0 +1,20 @@
+{% extends "reviews/base.html" %}
+
+{% block content %}
+    <h1>Welcome to TuneReview!</h1>
+    <h3>The place to rate and review music.</h3>
+    {% if user.is_authenticated %}
+    <div class="container">
+        <p><strong>My Reviews</strong> lets you look at any review you have created for an album.</p>
+        <p><strong>Browse Recent Reviews</strong> allows you to look at any recent reviews left on TuneReview.</p>
+        <p><strong>Leave a Review</strong> allows you to write a review on an album.</p>
+    </div>
+    {% else %}
+    <h5>Members can review music albums and share their thoughts with the community.</h5>
+    <div class="border-top pt-3">
+        <small class="text-muted">Need an account? <a class="ml-2" href="{% url 'register' %}">Sign Up Today</a></small>
+    </div>
+    {% endif %}
+
+
+{% endblock content %}

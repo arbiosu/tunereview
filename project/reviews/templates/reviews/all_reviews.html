@@ -1,7 +1,8 @@
 {% extends "reviews/base.html" %}
 
 {% block content %}
-    <h1>My Reviews</h1>
+    <h1>Recent Tune Reviews</h1>
+    <p>Click on 'Leave a Comment' to share your thoughts with the reviewer.</p>
     <div class="container">
         {% for review in reviews %}
             <h4>{{ review.albumId }}</h4>
@@ -10,16 +11,6 @@
             <p>{{ review.review_text }}</p>
             <p>Rating: {{ review.rating }}/5 stars</p>
             <a class="ml-2" href="/reviews/comments/create_comment/">Leave a Comment</a>
-
-        {% endfor %}
-    </div>
-
-    <div class="container">
-        <h4> Comments </h4>
-        {% for comment in comments %}
-            <h5>Comment from: {{ comment.commentAuthor }}</h5>
-            <p> {{ comment.date_posted|date:"F d, y" }} </p>
-            <p>{{ comment.comment_text }}
         {% endfor %}
     </div>
 

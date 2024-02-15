@@ -1,0 +1,20 @@
+{% extends "reviews/base.html" %}
+
+{% block content %}
+    <h1>My Reviews</h1>
+    <div class="container">
+        <h4>{{ object.albumId }}</h4>
+        <p>{{ object.date_posted|date:"F d, Y" }}</p>
+        <p>Review by: {{ object.author }}</p>
+        <p>{{ object.review_text }}</p>
+        <p>Rating: {{ object.rating }}/5 stars</p>
+    </div>
+
+    <div class="container">
+        <h4> Comments </h4>
+        <h4>{{ comment.commentAuthor }}</h4>
+        <p> {{ comment.date_posted|date:"F d, y" }} </p>
+        <p>{{ comment.comment_text }}
+    </div>
+
+{% endblock content %}

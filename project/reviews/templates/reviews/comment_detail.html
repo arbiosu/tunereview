@@ -1,0 +1,9 @@
+{% extends "reviews/base.html" %}
+{% block content %}
+<div class="container">
+    <h4> Comments </h4>
+    <h4>{{ object.commentAuthor }}</h4>
+    <p> {{ object.date_posted|date:"F d, y" }} </p>
+    <p>{{ object.comment_text }}</p>
+</div>
+{% endblock content %}
