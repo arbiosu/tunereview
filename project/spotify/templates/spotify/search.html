@@ -17,18 +17,16 @@
     </form>
 
     {% if searched %}
-        <h2>Search results for: {{ searched }}</h2>
+        <h5>Search results for: {{ searched }}</h5>
         <div class="container-md">
             <div class="main">
                 {% for result in results %}
                 <div class="row">
                     <div class="col-md-5">
                         <div class="audio audio1 dark">
-                            <p>{{ result.name }}</p>
-                            <p>{{ result.id }}</p>
+                            <p>{{ result.title }}</p>
                             <p>{{ result.artist }}</p>
-                            <p>{{ result.release_date }}</p>
-                            <a href="/reviews/new/{{ result.album_id }}">Review Album</a>
+                            <a href="/reviews/new/{{ result.id }}">Review Album</a>
                         </div>
                     </div>
                 </div>

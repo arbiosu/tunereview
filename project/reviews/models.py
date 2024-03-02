@@ -6,15 +6,12 @@ from django.urls import reverse
 
 class Album(models.Model):
 
-    name = models.TextField()
+    title = models.TextField()
     artist = models.TextField()
-    release_date = models.DateField(default="2024-02-28")
-    genre = models.TextField()
     spotify_id = models.CharField(max_length=22)  # length of spotify id
 
     def __str__(self):
-        return f'{self.name} by {self.artist}'
-        # return str(self.id)
+        return f'{self.title} by {self.artist}'
 
 
 class Review(models.Model):

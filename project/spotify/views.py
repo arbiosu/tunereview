@@ -11,22 +11,23 @@ def search(request):
         searched = request.POST['searched']
         search_results = search_album(searched)
         results = []
+
         for i, album in enumerate(search_results):
             info = {}
-            info['id'] = album['id']
-            info['name'] = album['name']
+            info['spotify_id'] = album['id']
+            info['title'] = album['name']
             info['artist'] = album['artists'][0]['name']
-            info['release_date'] = album['release_date']
-            query_set = Album.objects.filter(spotify_id=info['id']).first()
-            if not query_set:
-                new_album = Album(
-                    name=info['name'],
-                    artist=info['artist'],
-                    spotify_id=info['id']
-                )
-                new_album.save()
-            else:
-                info['album_id'] = query_set.id
+
+            obj, created = Album.objects.get_or_create(
+                spotify_id=info['spotify_id'],
+                defaults={
+                    'title': info['title'],
+                    'artist': info['artist']
+                }
+            )
+
+            info['id'] = obj.id
+
             results.append(info)
 
         context = {

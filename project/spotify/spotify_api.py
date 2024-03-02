@@ -43,7 +43,7 @@ def search_album(album_name: str):
     params = {
         'q': album_name,
         'type': 'album',
-        'limit': 10
+        'limit': 3
     }
 
     search_response = requests.get(search_url, headers=headers, params=params)
@@ -56,7 +56,6 @@ def search_album(album_name: str):
         #     print(f"album id: {album['id']}")
         #     print(f"album name: {album['name']}")
         #     print(f"artist: {album['artists'][0]['name']}")
-        #     print(f"release date: {album['release_date']}")
 
         return albums
 
