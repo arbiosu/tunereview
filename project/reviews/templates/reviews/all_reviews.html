@@ -1,17 +1,36 @@
 {% extends "reviews/base.html" %}
 
 {% block content %}
-    <h1>Recent Tune Reviews</h1>
-    <p>Click on 'Leave a Comment' to share your thoughts with the reviewer.</p>
     <div class="container">
-        {% for review in reviews %}
-            <h4>{{ review.albumId }}</h4>
-            <p>{{ review.date_posted|date:"F d, Y" }}</p>
-            <p>Review by: {{ review.author }}</p>
-            <p>{{ review.review_text }}</p>
-            <p>Rating: {{ review.rating }}/5 stars</p>
-            <a class="ml-2" href="/reviews/comments/create_comment/">Leave a Comment</a>
-        {% endfor %}
+        <div class="row justify-content-center">
+            <div class="co-md-5 text-center text-md-start">
+                <h5>
+                    <div class="display-4 fw-bold">Recent Tune Reviews</div>
+                    <div class="display-6 text-muted">
+                        Click on 'Leave a Comment' to share your thoughts with 
+                        the reviewer</div>
+                </h5>
+            </div>
+        </div>
     </div>
 
+    {% for review in reviews %}
+        <div class="container my-5">
+            <h5>{{review.albumId}}</h5>
+            <p>{{review.date_posted|date:"F d, Y"}}</p>
+            <p>Review by: {{review.author}}</p>
+            <div class="bd-example">
+                <details open>
+                    <summary>
+                        Review
+                    </summary>
+                    <p>{{review.review_text}}</p>
+                </details>
+                <p>Rating: {{review.rating}}/5 stars</p>
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock content %}
+
+<!-- <a class="ml-2" href="/reviews/comments/create_comment/">Leave a Comment</a> -->

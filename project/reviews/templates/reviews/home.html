@@ -1,20 +1,60 @@
 {% extends "reviews/base.html" %}
 
 {% block content %}
-    <h1>Welcome to TuneReview!</h1>
-    <h3>The place to rate and review music.</h3>
-    {% if user.is_authenticated %}
+
     <div class="container">
-        <p><strong>My Reviews</strong> lets you look at any review you have created for an album.</p>
-        <p><strong>Browse Recent Reviews</strong> allows you to look at any recent reviews left on TuneReview.</p>
-        <p><strong>Leave a Review</strong> allows you to write a review on an album.</p>
+        <div class="row justify-content-center">
+            <div class="co-md-5 text-center text-md-start">
+                <h1>
+                    <div class="display-2 fw-bold">TuneReview</div>
+                    <div class="display-6 text-muted">Rate and Review Music with Friends.</div>
+                </h1>
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="row justify-content-center">
+            <div class = "col-lg-8">
+                <div class="list-group">
+                    <div class="list-group-item py-3">
+                        <h5 class="mb-1">Test.</h5>
+                        <p class="mb-1">TuneReview uses Spotify's API to pull in album information.</p>
+                    </div>
+                    <div class="list-group-item py-3">
+                        <h5 class="mb-1">Review albums.</h5>
+                        <p class="mb-1">Write your thoughts on any album, along with a rating.</p>
+                    </div>
+                    <div class="list-group-item py-3">
+                        <h5 class="mb-1">See what's up.</h5>
+                        <p class="mb-1">Browse reviews and comment on them.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="row justify-content-center">
+            <div class = "col-lg-8">
+                <div class="list-group">
+                    <div class="list-group-item py-3">
+                        <h5 class="mb-1">Log in with your Spotify account.</h5>
+                        <p class="mb-1">TuneReview uses Spotify's API to pull in album information.</p>
+                    </div>
+                    <div class="list-group-item py-3">
+                        <h5 class="mb-1">Review albums.</h5>
+                        <p class="mb-1">Write your thoughts on any album, along with a rating.</p>
+                    </div>
+                    <div class="list-group-item py-3">
+                        <h5 class="mb-1">See what's up.</h5>
+                        <p class="mb-1">Browse reviews and comment on them.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="border-top pt-3">
+            <small class="text-muted">Need an account? <a class="ml-2" href="{% url 'register' %}">Sign Up Today</a></small>
+        </div>
+        {% endif %}
     </div>
-    {% else %}
-    <h5>Members can review music albums and share their thoughts with the community.</h5>
-    <div class="border-top pt-3">
-        <small class="text-muted">Need an account? <a class="ml-2" href="{% url 'register' %}">Sign Up Today</a></small>
-    </div>
-    {% endif %}
+
 
 
 {% endblock content %}

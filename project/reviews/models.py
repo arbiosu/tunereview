@@ -8,6 +8,10 @@ class Album(models.Model):
 
     name = models.TextField()
     artist = models.TextField()
+    # release_date = models.DateField()
+    # genre = models.TextField()
+    # spotify_id = models.CharField(max_length=22) # length of spotify id
+    # album_art = models.ImageField(upload_to='album_art')
 
     def __str__(self):
         return f'{self.name} by {self.artist}'

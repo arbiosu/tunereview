@@ -1,20 +1,29 @@
 {% extends "reviews/base.html" %}
 
 {% block content %}
-    <h1>My Reviews</h1>
     <div class="container">
-        <h4>{{ object.albumId }}</h4>
-        <p>{{ object.date_posted|date:"F d, Y" }}</p>
-        <p>Review by: {{ object.author }}</p>
+        <div class="row justify-content-center">
+            <div class="co-md-5 text-center text-md-start">
+                <h1>
+                    <div class="display-4 fw-bold">{{ object.albumId }}</div>
+                    <div class="display-6 text-muted">Reviewed by {{ object.author }}.</div>
+                    <div class="display-6 text-muted">{{ object.date_posted|date:"F d, Y" }}.</div>
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
         <p>{{ object.review_text }}</p>
         <p>Rating: {{ object.rating }}/5 stars</p>
     </div>
 
     <div class="container">
         <h4> Comments </h4>
-        <h4>{{ comment.commentAuthor }}</h4>
-        <p> {{ comment.date_posted|date:"F d, y" }} </p>
-        <p>{{ comment.comment_text }}
+        {% for comment in comments %}
+            <h4>{{ comment.commentAuthor }}</h4>
+            <p> {{ comment.date_posted|date:"F d, y" }} </p>
+            <p>{{ comment.comment_text }}
+        {% endfor %}
     </div>
 
 {% endblock content %}

@@ -8,22 +8,34 @@ def index(request):
 
 
 def reviews(request):
+    """
+    Get the users reviews.
+    """
+    my_reviews = Review.objects.filter(author=request.user)
+
     context = {
-        'reviews': Review.objects.filter(author=request.user),
-        'comments': Comment.objects.all()
+        'reviews': my_reviews
     }
     return render(request, 'reviews/reviews.html', context)
 
 
 def recent_reviews(request):
+    reviews = Review.objects.all()
+    # reviewIds = [review.id for review in reviews]
+    # comments = Comment.objects.filter(reviewId=reviewIds[0])
     context = {
-        'reviews': Review.objects.all()
+        'reviews': reviews
     }
     return render(request, 'reviews/all_reviews.html', context)
 
 
 class ReviewDetailView(DetailView):
     model = Review
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comments'] = Comment.objects.filter(reviewId=self.object)
+        return context
 
 
 class ReviewCreateView(CreateView):

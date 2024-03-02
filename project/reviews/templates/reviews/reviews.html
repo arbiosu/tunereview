@@ -1,26 +1,34 @@
 {% extends "reviews/base.html" %}
 
 {% block content %}
-    <h1>My Reviews</h1>
-    <div class="container">
-        {% for review in reviews %}
-            <h4>{{ review.albumId }}</h4>
-            <p>{{ review.date_posted|date:"F d, Y" }}</p>
-            <p>Review by: {{ review.author }}</p>
-            <p>{{ review.review_text }}</p>
-            <p>Rating: {{ review.rating }}/5 stars</p>
-            <a class="ml-2" href="/reviews/comments/create_comment/">Leave a Comment</a>
 
-        {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="co-md-5 text-center text-md-start">
+                <h5>
+                    <div class="display-4 fw-bold">My Reviews</div>
+                    <div class="display-6 text-muted">
+                        A list of all reviews you have written.
+                    </div>
+                </h5>
+            </div>
+        </div>
     </div>
 
     <div class="container">
-        <h4> Comments </h4>
-        {% for comment in comments %}
-            <h5>Comment from: {{ comment.commentAuthor }}</h5>
-            <p> {{ comment.date_posted|date:"F d, y" }} </p>
-            <p>{{ comment.comment_text }}
-        {% endfor %}
+        <div class="col-lg-8">
+            <div class="list-group">
+                {% for review in reviews %}
+                <a href="{% url 'review-detail' review.pk %}" class="list-group-item list-group-item-action active">
+                    {{ review.albumId }}
+                  </a>
+                <div class="list-group-item py-3">
+                    <p class="mb-1">{{ review.date_posted|date:"F d, Y" }}</p>
+                    <p class="mb-1">Rating: {{ review.rating }}/5</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 {% endblock content %}

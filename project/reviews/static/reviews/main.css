@@ -18,15 +18,15 @@ ul {
 }
 
 .bg-steel {
-    background-color: #5f788a;
+    background-color: #400073;
 }
 
 .site-header .navbar-nav .nav-link {
-    color: #cbd5db;
+    color: #ffffff;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-    color: #ffffff;
+    color: #D2F25E;
 }
 
 .site-header .navbar-nav .nav-link.active {
