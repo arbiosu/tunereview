@@ -1,0 +1,44 @@
+{% extends "reviews/base.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="co-md-5 text-center text-md-start">
+            <h5>
+                <div class="display-4 fw-bold">Search</div>
+                <div class="display-6 text-muted">Search for Albums in Spotify's Catalog</div>
+            </h5>
+        </div>
+    </div>
+    <form class="d-flex" method="POST" action="">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search Albums" aria-label="Search" name="searched">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+
+    {% if searched %}
+        <h2>Search results for: {{ searched }}</h2>
+        <div class="container-md">
+            <div class="main">
+                {% for result in results %}
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="audio audio1 dark">
+                            <p>{{ result.name }}</p>
+                            <p>{{ result.id }}</p>
+                            <p>{{ result.artist }}</p>
+                            <p>{{ result.release_date }}</p>
+                            <a href="/reviews/new/{{ result.album_id }}">Review Album</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+            
+    {% else %}
+        <h1>Search for an album</h1>
+    {% endif %}
+</div>
+
+{% endblock %}

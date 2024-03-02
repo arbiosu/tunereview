@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('reviews.urls')),
     path('user/', include('django.contrib.auth.urls')),
     path('user/', include('users.urls')),
+    path('albums/', include('spotify.urls')),
 ]

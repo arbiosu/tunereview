@@ -52,12 +52,46 @@ def search_album(album_name: str):
         search_response_data = search_response.json()
         albums = search_response_data['albums']['items']
 
-        for album in albums:
-            print(f"album id: {album['id']}")
-            print(f"album name: {album['name']}")
-            print(f"artist: {album['artists'][0]['name']}")
+        # for album in albums:
+        #     print(f"album id: {album['id']}")
+        #     print(f"album name: {album['name']}")
+        #     print(f"artist: {album['artists'][0]['name']}")
+        #     print(f"release date: {album['release_date']}")
 
-    return albums
+        return albums
+
+    if search_response.status_code == 401:
+        print("Error 400: Bad or Expired Token")
+        return
+    if search_response.status_code == 403:
+        print("Error 403: Bad OAuth Request")
+    if search_response.status_code == 429:
+        print("Error 429: The app has exceeded its rate limits.")
 
 
-print(search_album("Graduation"))
+def get_album_genre(album_id: str) -> str:
+    """
+    Get the genre of an album by its Spotify id.
+
+    Args:
+        album_id: The Spotify id of the album.
+
+    Returns:
+        genre: a string representing the genre of the album.
+    """
+
+    access_token = get_access_token()
+
+    headers = {
+        'Authorization': f"Bearer {access_token}"
+    }
+
+    search_url = f"https://api.spotify.com/v1/albums/{album_id}"
+
+    search_response = requests.get(search_url, headers=headers)
+
+    if search_response.status_code == 200:
+        search_response_data = search_response.json()
+        genre = search_response_data['genres']
+
+        return genre

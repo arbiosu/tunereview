@@ -20,7 +20,7 @@
             <div class="list-group">
                 {% for review in reviews %}
                 <a href="{% url 'review-detail' review.pk %}" class="list-group-item list-group-item-action active">
-                    {{ review.albumId }}
+                    {{ review.album_id }}
                   </a>
                 <div class="list-group-item py-3">
                     <p class="mb-1">{{ review.date_posted|date:"F d, Y" }}</p>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap4',
     'reviews.apps.ReviewsConfig',
     'users.apps.UsersConfig',
+
     'rest_framework',
     'spotify.apps.SpotifyConfig',
 ]

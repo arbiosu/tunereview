@@ -8,7 +8,7 @@ class Album(models.Model):
 
     name = models.TextField()
     artist = models.TextField()
-    release_date = models.DateField()
+    release_date = models.DateField(default="2024-02-28")
     genre = models.TextField()
     spotify_id = models.CharField(max_length=22)  # length of spotify id
 

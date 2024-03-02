@@ -34,7 +34,7 @@ class ReviewDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(reviewId=self.object)
+        context['comments'] = Comment.objects.filter(review_id=self.object)
         return context
 
 
@@ -44,7 +44,7 @@ class ReviewCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        form.instance.albumId = Album.objects.get(pk=1)
+        form.instance.album_id = Album.objects.get(pk=self.kwargs['album_id'])
         return super().form_valid(form)
 
 
