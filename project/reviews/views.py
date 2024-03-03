@@ -61,6 +61,8 @@ class CommentCreateView(CreateView):
     fields = ['comment_text']
 
     def form_valid(self, form):
-        form.instance.commentAuthor = self.request.user
-        form.instance.reviewId = Review.objects.get(pk=10)
+        form.instance.comment_author = self.request.user
+        form.instance.review_id = Review.objects.get(
+            pk=self.kwargs['review_id']
+            )
         return super().form_valid(form)

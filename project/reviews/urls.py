@@ -17,8 +17,11 @@ urlpatterns = [
         name='review-create'
         ),
     path("reviews/all_reviews/", views.recent_reviews, name="recent-reviews"),
-    path('reviews/comments/create_comment/', CommentCreateView.as_view(),
-         name='comment-create'),
+    path(
+        'reviews/comments/create_comment/<int:review_id>',
+        CommentCreateView.as_view(), name='comment-create'
+        ),
+
     path('reviews/comments/<int:pk>/', CommentDetailView.as_view(),
          name='comment-detail')
 ]

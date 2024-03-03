@@ -2,33 +2,35 @@
 
 {% block content %}
 
-    <div class="container">
-        <div class="row">
-            <div class="co-md-5 text-center text-md-start">
-                <h5>
-                    <div class="display-4 fw-bold">My Reviews</div>
-                    <div class="display-6 text-muted">
-                        A list of all reviews you have written.
-                    </div>
-                </h5>
-            </div>
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="co-md-5 text-center text-md-start">
+            <h5>
+                <div class="display-4 fw-bold">My Reviews</div>
+                <div class="display-6 text-muted">
+                    all of your reviews in one place.
+                </div>
+            </h5>
         </div>
     </div>
-
-    <div class="container">
-        <div class="col-lg-8">
-            <div class="list-group">
-                {% for review in reviews %}
-                <a href="{% url 'review-detail' review.pk %}" class="list-group-item list-group-item-action active">
-                    {{ review.album_id }}
-                  </a>
-                <div class="list-group-item py-3">
-                    <p class="mb-1">{{ review.date_posted|date:"F d, Y" }}</p>
-                    <p class="mb-1">Rating: {{ review.rating }}/5</p>
-                </div>
-                {% endfor %}
+</div>
+    <div class="card-deck">
+        {% for review in reviews %}
+        <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+            <div class="card-body">
+                <h3 class="card-title">{{ review.album_id.title }}</h3>
+                <h6 class="card-title">{{ review.album_id.artist }}</h6>
+                <p class="card-text">Review by: {{ review.author }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-dark">{{ review.date_posted|date:"F d, Y" }}</li>
+                <li class="list-group-item bg-dark">Rating: {{ review.rating }}/5</li>
+            </ul>
+            <div class="card-footer">
+                <a href="{% url 'review-detail' review.pk %}" class="card-link">View Review</a>
             </div>
         </div>
+        {% endfor %}
     </div>
 
 {% endblock content %}

@@ -20,10 +20,12 @@
     <div class="container">
         <h4> Comments </h4>
         {% for comment in comments %}
-            <h4>{{ comment.commentAuthor }}</h4>
-            <p> {{ comment.date_posted|date:"F d, y" }} </p>
-            <p>{{ comment.comment_text }}
+            <h4>{{ comment.comment_author }}</h4>
+            <p>{{ comment.date_posted|date:"F d, y" }} </p>
+            <p>{{ comment.comment_text }}</p>
         {% endfor %}
     </div>
+
+    <a href="{% url 'comment-create' review.pk %}" class="card-link">Leave a Comment</a>
 
 {% endblock content %}

@@ -1,35 +1,41 @@
 {% extends "reviews/base.html" %}
 
 {% block content %}
-    <div class="container">
+    <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="co-md-5 text-center text-md-start">
                 <h5>
                     <div class="display-4 fw-bold">Recent Tune Reviews</div>
                     <div class="display-6 text-muted">
                         Click on 'Leave a Comment' to share your thoughts with 
-                        the reviewer</div>
+                        the reviewer.
+                    </div>
                 </h5>
             </div>
         </div>
     </div>
 
-    {% for review in reviews %}
-        <div class="container my-5">
-            <h5>{{review.album_id}}</h5>
-            <p>{{review.date_posted|date:"F d, Y"}}</p>
-            <p>Review by: {{review.author}}</p>
-            <div class="bd-example">
-                <details open>
-                    <summary>
-                        Review
-                    </summary>
-                    <p>{{review.review_text}}</p>
-                </details>
-                <p>Rating: {{review.rating}}/5 stars</p>
+    <div class="card-deck">
+        {% for review in reviews %}
+        <div class="card text-white bg-dark mb-3" style="width: 18rem;">
+            <div class="card-body">
+                <h3 class="card-title">{{ review.album_id.title }}</h3>
+                <h6 class="card-title">{{ review.album_id.artist }}</h6>
+                <p class="card-text">Review by: {{ review.author }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item bg-dark">{{ review.date_posted|date:"F d, Y" }}</li>
+                <li class="list-group-item bg-dark text-warning">Rating: {{ review.rating }}/5</li>
+                <li class="list-group-item bg-dark">{{ review.review_text }}</li>
+            </ul>
+            <div class="card-footer">
+                <a href="{% url 'review-detail' review.pk %}" class="card-link">View Review</a>
+                <a href="{% url 'comment-create' review.pk %}" class="card-link">Leave a Comment</a>
             </div>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
+        
 
 {% endblock content %}
 
