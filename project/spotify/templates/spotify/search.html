@@ -21,14 +21,11 @@
         <div class="container-md">
             <div class="main">
                 {% for result in results %}
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="audio audio1 dark">
-                            <h2>{{ result.title }}</h2>
-                            <p>By {{ result.artist }}</p>
-                            <a href="/reviews/new/{{ result.id }}">Review Album</a>
-                        </div>
-                    </div>
+                <div class="audio audio1 dark">
+                    <h1>image here</h1>
+                    <h2>{{ result.title }}</h2>
+                    <p>By {{ result.artist }}</p>
+                    <a href="/reviews/new/{{ result.id }}">Review Album</a>
                 </div>
                 {% endfor %}
             </div>
