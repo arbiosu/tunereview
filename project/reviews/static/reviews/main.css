@@ -89,6 +89,15 @@ a.article-title:hover {
 }
 
 /* https://github.com/umamadhaveedara/my-spotify-clone/blob/main/style.css */
+
+.main{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2em 0em;
+}
+
+
 .audio{
     width: 250px;
     height: 375px;
@@ -114,6 +123,7 @@ a.article-title:hover {
     font-weight: 500;
     font-size: medium;
     margin: 0.5em;
+    color: #ffffff;
 }
 .audio p{
     font-size: small;
